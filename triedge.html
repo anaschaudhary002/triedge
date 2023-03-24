@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        *,
+        :root {
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+        }
+
+        .main {
+            width: 650px;
+            margin: auto;
+            border-top: 3px solid red;
+            border-bottom: 3px solid red;
+            box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.281);
+        }
+
+        .main-heading {
+            font-size: 25px;
+        }
+
+        .div-icon {
+            display: flex;
+            justify-content: end;
+
+        }
+
+        .icons {
+            margin: 0px 5px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0px 20px 0px;
+            /* background-color: white !important; */
+        }
+
+        .btn1 {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 10px 20px 0px;
+
+        }
+
+        .btn2 {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 0px 20px 0px;
+        }
+
+        .div-starrating {
+            margin: 30px 0px 20px 0px;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .starrating {
+            padding: 20px 20px 0px 0px;
+        }
+
+        .div-checkbox {
+            margin: 15px 0px;
+        }
+
+        .pros-input {
+            width: 650px;
+            border: none !important;
+            outline: none !important;
+            padding: 10px 15px;
+        }
+
+        .div-btn {
+            color: white;
+            background-color: rgb(3, 33, 41);
+            padding: 4px 40px;
+            border: none !important;
+            outline: none !important;
+        }
+
+        .div-submit {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0px;
+        }
+
+        .pros-span {
+            position: absolute;
+            right: 10px;
+            top: 6px;
+        }
+
+        #hide-card {
+            display: none;
+        }
+
+        #show-card,
+        #hide-card {
+            background-color: rgb(0, 79, 101);
+            border: none;
+            padding: 10px 15px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #show-card:hover,
+        #hide-card:hover {
+            background-color: black;
+            color: white;
+
+        }
+
+        .textfield {
+            position: relative;
+            /* border: 2px solid black; */
+            display: none;
+        }
+
+        .bi-trash3 {
+            position: absolute;
+            right: 20px;
+            bottom: 12px;
+        }
+
+        .review-con {
+            background-color: aqua;
+            margin-top: 50px;
+        }
+
+        @media (max-width:936px) {
+            .Main-card {
+                margin-top: 50px;
+            }
+        }
+        @media (max-width:400px) {
+            .review-card p{
+                font-size: 5px;
+                font-weight: 100;
+            }
+        }
+        @media (max-width:394px) {
+            .review-card {
+                width: 200px;
+            }
+        }
+
+        .review-div {
+            overflow: hidden !important;
+            padding: 0 !important;
+            margin: 50px 0px 0px 0px !important;
+            
+        }
+
+        .review-card {
+            border: 2px solid rgb(128, 128, 128);
+            border-radius: 20px;
+            box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.082);
+        }
+        .card-star{
+            margin-top: 10px;
+            padding:5px;
+            /* border: 2px solid black */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container Main-card" style="display:none;">
+        <div class="row main">
+            <div class="col-12 rating d-flex justify-content-between">
+                <div class="col-10 main-heading">Add<span style="color:red;"> Your Rating & Review</span></div>
+                <div class="col-2 div-icon">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-arrows-angle-expand icons" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z" />
+                        </svg></span>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="Red"
+                            class="bi bi-x icons" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                        </svg></span>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-between">
+                <div class="col-6 ">
+                    <label style="font-size: 18px; padding:20px 0px 20px 0px;color: rgb(0, 79, 101);">You are Rating &
+                        Reviewing</label>
+                </div>
+                <div class="col-6 btn-group d-flex justify-content-between selectbtn">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Institute</option>
+
+                        <option value="University">University</option>
+                        <option value="Govt Colleges">Govt Colleges</option>
+                        <option value="pvt college">pvt college</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="col-12 d-flex">
+                <div class="col-6">
+                    <div style="font-size:16px ;">Name</div>
+                    <div>
+                        <div class=" btn-group btn1">
+                            <select id="formid" class="form-select options" aria-label="Default select example">
+                                <option selected>Amity University</option>
+                                <option value="A.K.T.U">A.K.T.U</option>
+                                <option value="I.P University">I.P University</option>
+                                <option value="Jamia University">Jamia University</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div style="font-size:16px ;">Location</div>
+                    <div>
+                        <div class="btn-group btn2 ">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Mumbai</option>
+
+                                <option value="Delhi">Delhi</option>
+                                <option value="Noida">Noida</option>
+                                <option value="Agra">Agra</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <div class="col-12">
+                    <p style="color:rgb(0, 79, 101); font-size: 18px;">How you are associated with <span
+                            class="span-optn">Amity University</span>?</p>
+                </div>
+                <div class="col-7 d-flex justify-content-between ">
+                    <div ><input  type="radio" id="Current Student" name="student" value="Current Student" checked>
+                        <label  for="Current Student" style="font-size:16px ;">Current Student</label>
+                    </div>
+                    <div><input type="radio" id="Alumni" name="student" value="Alumni">
+                        <label for="Alumni" style="font-size:16px ;">Alumni</label>
+                    </div>
+                    <div><input type="radio" id="Campus Recruiter" name="student" value="Campus Recruiter">
+                        <label for="Campus Recruiter" style="font-size:16px ;">Campus Recruiter</label>
+                    </div>
+                </div>
+            </div>
+            <div class="div-starrating">
+                <div class="col-12 d-flex starrating">
+                    <div class="col-6">
+                        Placement Quality
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class="col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px; ">
+                        Good
+                    </div>
+                </div>
+                <div class="col-12 d-flex starrating">
+                    <div class="col-6">
+                        Infrastructure
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class=" col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px;">
+                        Bad
+                    </div>
+                </div>
+                <div class="col-12 d-flex starrating">
+                    <div class="col-6">
+                        Faculty Quality
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class="col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px;">
+                        Good
+                    </div>
+                </div>
+                <div class="col-12 d-flex starrating">
+                    <div class="col-6">
+                        Campus Life
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class="col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px;">
+                        Good
+                    </div>
+                </div>
+                <div class="col-12 d-flex starrating" >
+                    <div class="col-6">
+                        Value For Money
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class="col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px;">
+                        Bad
+                    </div>
+                </div>
+                <div class="col-12 d-flex starrating" style="margin-bottom: 20px;">
+                    <div class="col-6">
+                        Student Quality
+                    </div>
+                    <div class="stars col-4 d-flex justify-content-between">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                        <img src="./star.svg" alt="">
+                    </div>
+                    <div class="col-2 d-flex justify-content-start" style="text-align: right;padding: 0 35px;">
+                        Bad
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p style="color:rgb(0, 79, 101); font-size: 18px;">Select Review Parameters</p>
+                </div>
+                <div class="col-12 d-flex div-checkbox">
+                    <div class="col-3">
+                        <input type="checkbox" id="Pros" class="parameters">
+                        <label for="Pros">Pros</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="Cons" class="parameters">
+                        <label for="Cons">Cons</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="PlacementQuality" class="parameters">
+                        <label for="PlacementQuality">Placement Quality</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="Infrastructure" class="parameters">
+                        <label for="Infrastructure">Infrastructure</label>
+                    </div>
+                </div>
+                <div class="col-12 d-flex div-checkbox">
+                    <div class="col-3">
+                        <input type="checkbox" id="FacultyQuality" class="parameters">
+                        <label for="FacultyQuality">Faculty Quality</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="CampusLife" class="parameters">
+                        <label for="CampusLife">Campus Life</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="Money" class="parameters">
+                        <label for="Money">Value For Money</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="StudentQuality" class="parameters">
+                        <label for="StudentQuality">Student Quality</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-3 textfield textarea-1">
+                <label for="exampleFormControlTextarea1" class="form-label">Pros</label>
+                <textarea class="form-control innertext1" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-2">
+                <label for="exampleFormControlTextarea1" class="form-label">Cons</label>
+                <textarea class="form-control innertext2" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Placement Quality</label>
+                <textarea class="form-control innertext3" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-4">
+                <label for="exampleFormControlTextarea1" class="form-label">Infrastructure</label>
+                <textarea class="form-control innertext4" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-5">
+                <label for="exampleFormControlTextarea1" class="form-label">Faculty Quality</label>
+                <textarea class="form-control innertext5" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-6">
+                <label for="exampleFormControlTextarea1" class="form-label">Campus life</label>
+                <textarea class="form-control innertext6" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-7">
+                <label for="exampleFormControlTextarea1" class="form-label">Value for Money</label>
+                <textarea class="form-control innertext7" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="my-3 textfield textarea-8">
+                <label for="exampleFormControlTextarea1" class="form-label">Student Quality</label>
+                <textarea class="form-control innertext8" id="exampleFormControlTextarea1" rows="1"
+                    placeholder="Write Something About Value For Money"></textarea>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                </svg>
+            </div>
+
+            <div class="col" style="margin-top:40px ;">
+                <div>
+                    <p>Designation</p>
+                </div>
+                <div class="col-12 d-flex justify-content-between" style="border:1px solid gray; ">
+                    <input class="pros-input" type="text" placeholder="Your Designation" style=" padding:10px">
+                </div>
+            </div>
+            <div class="col-12 d-flex" style="margin:15px 0px ;">
+                <div class="col-6">
+                    <div style="margin:5px 0px ;">Functions</div>
+                    <input type="text" placeholder="Functions" style="width:310px; padding: 10px;">
+                </div>
+                <div class="col-6">
+                    <div style="margin:5px 0px ;">Department</div>
+                    <input type="text" placeholder="Department" style="width:315px; padding: 10px;">
+                </div>
+            </div>
+            <div class="col">
+                <input type="checkbox" id="Anonymous">
+                <label for="Anonymous">Keep This Rating & Reviews as Anonymous</label>
+            </div>
+            <div class="div-submit">
+                <button class="div-btn" type="submit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+    <div><button id="show-card" class="abc">Tap to see card</button>
+        <button id="hide-card">Tap to Hide card</button>
+    </div>
+    <div>
+        <div class="row d-flex justify-content-center review-div" style="">
+            <div class="col-4 review-card" style="background-color:rgba(128, 128, 128, 0.466);display:none;">
+                <div class="col">
+                    <p style="text-align:center;font-size:25px;margin-top: 12px;">Your Review for <span class="un-name"></span> as a <span class="position"></span> Has Been Submitted</p>
+                </div>
+                <div class="col">
+                    <div class="my-3 textarea-card textfield1">
+                        <label for="exampleFormControlTextarea1" class="form-label">Pros</label>
+                        <textarea disabled class="form-control innertext9" id="exampleFormControlTextarea1" rows="1"></textarea>
+                        
+                    </div>
+                    <div class="my-3 textarea-card textfield2">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cons</label>
+                        <textarea disabled class="form-control innertext10" id="exampleFormControlTextarea1" rows="1"></textarea>
+                       
+                    </div>
+                    <div class="my-3 textarea-card textfield3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Placement Quality</label>
+                        <textarea disabled class="form-control innertext11" id="exampleFormControlTextarea1" rows="1"></textarea>
+                        
+                    </div>
+                    <div class=" my-3 textarea-card textfield4">
+                        <label for="exampleFormControlTextarea1" class="form-label">Infrastructure</label>
+                        <textarea disabled class="form-control innertext12" id="exampleFormControlTextarea1" rows="1"></textarea>
+                        
+                    </div>
+                    <div class="my-3 textarea-card textfield5">
+                        <label for="exampleFormControlTextarea1" class="form-label">Faculty Quality</label>
+                        <textarea disabled class="form-control innertext13" id="exampleFormControlTextarea1" rows="1"></textarea>
+                       
+                    </div>
+                    <div class="my-3 textarea-card textfield6">
+                        <label for="exampleFormControlTextarea1" class="form-label">Campus life</label>
+                        <textarea disabled class="form-control innertext14" id="exampleFormControlTextarea1" rows="1"></textarea>
+                   
+                    </div>
+                    <div class="my-3 textarea-card textfield7">
+                        <label for="exampleFormControlTextarea1" class="form-label">Value for Money</label>
+                        <textarea disabled class="form-control innertext15" id="exampleFormControlTextarea1" rows="1"></textarea>
+                    </div>
+                    <div class="my-3 textarea-card textfield8">
+                        <label for="exampleFormControlTextarea1" class="form-label">Student Quality</label>
+                        <textarea disabled class="form-control innertext16" id="exampleFormControlTextarea1" rows="1"></textarea>
+                        
+                    </div>
+                     <div class="col"style="margin-bottom: 20px;">
+                        <div class="col">OverAll Rating</div>
+                            <div class="col d-flex" >
+                                <div class="stars col-8">
+                                    <img src="./star.svg" alt="">
+                                    <img src="./star.svg" alt="">
+                                    <img src="./star.svg" alt="">
+                                    <img src="./star.svg" alt="">
+                                    <img src="./star.svg" alt="">
+                                </div>
+                                <div class=" col-4" style="text-align: end;">
+                                    Bad
+                                </div>
+                            </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        let showcard = document.querySelector("#show-card");
+        let hidecard = document.querySelector("#hide-card");
+        let Maincard = document.querySelector(".Main-card");
+        let bix = document.querySelector(".bi-x");
+        let Pro = document.querySelector("#Pros");
+        let Cons = document.querySelector("#Cons");
+        let PlacementQuality = document.querySelector("#PlacementQuality");
+        let Infrastructure = document.querySelector("#Infrastructure");
+        let FacultyQuality = document.querySelector("#FacultyQuality");
+        let CampusLife = document.querySelector("#CampusLife");
+        let Money = document.querySelector("#Money");
+        let StudentQuality = document.querySelector("#StudentQuality");
+        let textarea1 = document.querySelector(".textarea-1");
+        let textarea2 = document.querySelector(".textarea-2");
+        let textarea3 = document.querySelector(".textarea-3");
+        let textarea4 = document.querySelector(".textarea-4");
+        let textarea5 = document.querySelector(".textarea-5");
+        let textarea6 = document.querySelector(".textarea-6");
+        let textarea7 = document.querySelector(".textarea-7");
+        let textarea8 = document.querySelector(".textarea-8");
+        let spanoptn = document.querySelector(".span-optn");
+        let formid = document.querySelector("#formid");
+        let divsubmit = document.querySelector(".div-submit");
+        let innertext1 = document.querySelector(".innertext1");
+        let innertext2 = document.querySelector(".innertext2");
+        let innertext3 = document.querySelector(".innertext3");
+        let innertext4 = document.querySelector(".innertext4");
+        let innertext5 = document.querySelector(".innertext5");
+        let innertext6 = document.querySelector(".innertext6");
+        let innertext7 = document.querySelector(".innertext7");
+        let innertext8 = document.querySelector(".innertext8");
+        let innertext9 = document.querySelector(".innertext9");
+        let innertext10 = document.querySelector(".innertext10");
+        let innertext11 = document.querySelector(".innertext11");
+        let innertext12 = document.querySelector(".innertext12");
+        let innertext13 = document.querySelector(".innertext13");
+        let innertext14 = document.querySelector(".innertext14");
+        let innertext15 = document.querySelector(".innertext15");
+        let innertext16 = document.querySelector(".innertext16");
+        let innertext17 = document.querySelector(".innertext17");
+        let innertext18 = document.querySelector(".innertext18");
+        let reviewcard = document.querySelector(".review-card");
+        let textfield1 = document.querySelector(".textfield1");
+        let textfield2 = document.querySelector(".textfield2");
+        let textfield3 = document.querySelector(".textfield3");
+        let textfield4 = document.querySelector(".textfield4");
+        let textfield5 = document.querySelector(".textfield5");
+        let textfield6 = document.querySelector(".textfield6");
+        let textfield7 = document.querySelector(".textfield7");
+        let textfield8 = document.querySelector(".textfield8");
+        let bitrash3 = document.querySelectorAll(".bi-trash3");
+        let formcontrol = document.querySelector(".form-control");
+        let universityname = document.querySelector(".un-name");
+        let position = document.querySelector(".position");
+        let data = document.getElementsByName("student");
+        
+        
+        showcard.addEventListener("click", () => {
+            showcard.style.display = "none";
+            hidecard.style.display = "block";
+            Maincard.style.display = "block";
+        })
+        hidecard.addEventListener("click", () => {
+            Maincard.style.display = "none";
+            showcard.style.display = "block";
+            hidecard.style.display = "none";
+        })
+        bix.addEventListener("click", () => {
+            Maincard.style.display = "none";
+            showcard.style.display = "block";
+            hidecard.style.display = "none";
+
+        })
+        Pro.addEventListener("click", () => {
+            if (Pro.checked) {
+                textarea1.style.display = "block";
+            } else {
+                textarea1.style.display = "none";
+            }
+        })
+        Cons.addEventListener("click", () => {
+            if (Cons.checked) {
+                textarea2.style.display = "block";
+            } else {
+                textarea2.style.display = "none";
+            }
+        })
+        PlacementQuality.addEventListener("click", () => {
+            if (PlacementQuality.checked) {
+                textarea3.style.display = "block";
+            } else {
+                textarea3.style.display = "none";
+            }
+        })
+        Infrastructure.addEventListener("click", () => {
+            if (Infrastructure.checked) {
+                textarea4.style.display = "block";
+            } else {
+                textarea4.style.display = "none";
+            }
+        })
+        FacultyQuality.addEventListener("click", () => {
+            if (FacultyQuality.checked) {
+                textarea5.style.display = "block";
+            } else {
+                textarea5.style.display = "none";
+            }
+        })
+        CampusLife.addEventListener("click", () => {
+            if (CampusLife.checked) {
+                textarea6.style.display = "block";
+            } else {
+                textarea6.style.display = "none";
+            }
+        })
+        Money.addEventListener("click", () => {
+            if (Money.checked) {
+                textarea7.style.display = "block";
+            } else {
+                textarea7.style.display = "none";
+            }
+        })
+        StudentQuality.addEventListener("click", () => {
+            if (StudentQuality.checked) {
+                textarea8.style.display = "block";
+            } else {
+                textarea8.style.display = "none";
+            }
+        })
+        // formid.addEventListener("click", changeText);
+        // function changeText() {
+        //     spanoptn.innerHTML = formid.value;
+        // }
+        formid.addEventListener("click", ()=>{
+            spanoptn.innerHTML = formid.value;
+        })
+        // bitrash3.addEventListener("click",()=>{
+        //     innertext1.value="";
+        // })
+        divsubmit.addEventListener("click", () => {
+            
+            showcard.style.display = "none";
+            hidecard.style.display = "none";
+            Maincard.style.display = "none";
+            reviewcard.style.display = "block"
+            universityname.innerHTML = formid.value;
+            if (innertext1.value == "") {
+                textfield1.style.display = "none"
+            } else {
+                innertext9.innerHTML = innertext1.value;
+            }
+            if (innertext2.value == "") {
+                textfield2.style.display = "none"
+            } else {
+                innertext10.innerHTML = innertext2.value;;
+            }
+            if (innertext3.value == "") {
+                textfield3.style.display = "none"
+            } else {
+                innertext11.innerHTML = innertext3.value;
+            }
+            if (innertext4.value == "") {
+                textfield4.style.display = "none"
+            } else {
+                innertext12.innerHTML = innertext4.value;
+            }
+            if (innertext5.value == "") {
+                textfield5.style.display = "none"
+            } else {
+                innertext13.innerHTML = innertext5.value;
+            }
+            if (innertext6.value == "") {
+                textfield6.style.display = "none"
+            } else {
+                innertext14.innerHTML = innertext6.value;
+            }
+            if (innertext7.value == "") {
+                textfield7.style.display = "none"
+            } else {
+                innertext15.innerHTML = innertext7.value;
+            }
+            if (innertext8.value == "") {
+                textfield8.style.display = "none"
+            } else {
+                innertext16.innerHTML = innertext8.value;
+            }
+            let a;
+            for ( a = 0; a <= data.length; a++) {
+                if(data[a].checked){
+                    position.innerHTML=data[a].value;
+                }
+            }
+        })
+        let stars=document.querySelectorAll(".stars")
+        stars.forEach((stardiv,i)=>{
+            let starsimg=stardiv.querySelectorAll(".stars img")
+            starsimg.forEach((singlestar,clickedindex)=>{
+                singlestar.addEventListener("click",()=>{
+                    // console.log(clickedindex+1);
+                    // console.log(`star of index ${clickedindex+1} was clicked`);
+                    starsimg.forEach((otherstar,otherindex)=>{
+                    if(otherindex<=clickedindex){
+                        otherstar.setAttribute("src","./star-fill.svg")
+                    }else{
+                        otherstar.setAttribute("src","./star.svg")
+                    }
+                    if(clickedindex<=2){
+                        stardiv.nextElementSibling.innerText = "Bad";
+                    }else{
+                        stardiv.nextElementSibling.innerText = "Good";
+                    }
+                })
+            })
+        })
+        })
+        // by for each loop
+    // bitrash3.forEach(item => {
+    //     // (Here Items means the delete icon we get of that particular div and
+    //     //  its previousElementSibling means the text area)
+    //     item.addEventListener("click",()=>{
+    //     item.previousElementSibling.value="";
+    //   })
+    // })    
+    // by for loop
+    for (let index = 0; index < bitrash3.length; index++) {
+        const element = bitrash3[index];
+        element.addEventListener("click",()=>{
+            element.previousElementSibling.value="";
+        })
+    }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
